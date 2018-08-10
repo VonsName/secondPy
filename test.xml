@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.dph.dao.endclient.EndClientMapper">
+	<resultMap id="BaseResultMap" type="com.dph.model.endclient.EndClient">
+		<result column="contactName" property="contactName" jdbcType="VARCHAR" />
+		<result column="contactPosition" property="contactPosition"
+				jdbcType="VARCHAR" />
+		<result column="contactMobile" property="contactMobile"
+				jdbcType="VARCHAR" />
+		<result column="contactQQ" property="contactQQ" jdbcType="VARCHAR" />
+		<result column="loginAccNumber" property="loginAccNumber"
+				jdbcType="VARCHAR" />
+		<result column="loginPass" property="loginPass" jdbcType="VARCHAR" />
+		<result column="loginStatus" property="loginStatus" jdbcType="INTEGER" />
+		<result column="partnerId" property="partnerId" jdbcType="INTEGER" />
+		<result column="levelId" property="levelId" jdbcType="INTEGER" />
+		<result column="contactEmail" property="contactEmail" jdbcType="VARCHAR" />
+		<result column="secondaryPhone" property="secondaryPhone"
+				jdbcType="VARCHAR" />
+		<result column="loginNum" property="loginNum" jdbcType="INTEGER" />
+		<result column="shareId" property="shareId" jdbcType="INTEGER" />
+		<result column="shareType" property="shareType" jdbcType="VARCHAR" />
+		<result column="synchronizationStatus" property="synchronizationStatus"
+				jdbcType="INTEGER" />
+		<result column="updateSynchronizationStatus" property="updateSynchronizationStatus"
+				jdbcType="INTEGER" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="endClientToken" property="endClientToken"
+				jdbcType="VARCHAR" />
+		<result column="accountType" property="accountType" jdbcType="SMALLINT" />
+		<result column="balanceamount" property="balanceamount" jdbcType="DECIMAL" />
+		<result column="saleGroupId" property="saleGroupId" jdbcType="INTEGER" />
+		<result column="oriShareId" property="oriShareId" jdbcType="INTEGER" />
+		<result column="lastOrderTime" property="lastOrderTime" jdbcType="TIMESTAMP" />
+		<result column="siteId" property="siteId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="operationManagerMap" type="java.util.HashMap">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="phone" property="phone" />
+	</resultMap>
+</mapper>
