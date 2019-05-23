@@ -1,6 +1,6 @@
 # __author:  Administrator
 # __date:  2019/5/13/013
-import json
+from oneday import jsone
 
 import requests
 
@@ -18,6 +18,6 @@ headers = {"user-agent":
 url = "https://fanyi.baidu.com/v2transapi"
 res = requests.post(url, data=data, headers=headers)
 
-dict_res = json.loads(res.content.decode())
+dict_res = jsone.loads(res.content.decode())
 
 print(dict_res)

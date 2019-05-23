@@ -1,9 +1,5 @@
 # __author:  Administrator
 # __date:  2018/8/9/009
-import foo
-import json
-import pickle
-import shelve
 
 # def main():
 #     print('hello')
