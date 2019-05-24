@@ -1,5 +1,0 @@
-Thu 09 Aug 2018 15:36:45 hashtest.py[line:19] ERROR err message
-Thu 09 Aug 2018 15:36:45 hashtest.py[line:20] WARNING warnmessage
-Thu 09 Aug 2018 15:36:45 hashtest.py[line:22] INFO info message
-Thu 09 Aug 2018 15:36:45 hashtest.py[line:23] CRITICAL cri message
-Thu 09 Aug 2018 15:36:45 hashtest.py[line:27] INFO logger
