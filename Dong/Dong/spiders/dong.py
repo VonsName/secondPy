@@ -9,6 +9,7 @@ class DongSpider(scrapy.Spider):
     start_urls = ['http://bbs.sun0769.com/portal.php']
 
     def parse(self, response):
+        print(self.hello, "*" * 100)
         li_list = response.xpath("//div[@class='newsList1']//li")
         for li in li_list:
             item = DongItem()

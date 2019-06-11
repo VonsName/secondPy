@@ -7,7 +7,6 @@
 
 import logging
 import re
-from Dong.items import DongItem
 
 logger = logging.getLogger(__name__)
 
@@ -22,3 +21,11 @@ class DongPipeline(object):
         details = [re.sub(r"\r\n|\s|\t", "", d) for d in details]
         details = [d for d in details if len(d) > 0]
         return details
+
+    # 爬虫开启的时候执行一次
+    def open_spider(self, spider):
+        spider.hello = "hello"
+
+    # 爬虫关闭的时候执行一次
+    def close_spider(self, spider):
+        print(spider.hello, "-" * 100)
