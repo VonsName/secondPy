@@ -16,6 +16,7 @@ class VonsSpider(scrapy.Spider):
 
     # 处理start_urls对应的响应
     def parse(self, response):
+        data = {"username": "von", "password": "123456"}
         # ret = response.xpath("//div[@class='tea_con']//h3/text()").extract()
         # print(ret)
         li_list = response.xpath("//div[@class='tea_con']//li")
@@ -24,3 +25,20 @@ class VonsSpider(scrapy.Spider):
             item = {"name": li.xpath(".//h3/text()").extract_first(), "title": li.xpath(".//h3/text()").extract_first()}
             logger.warning(item)
             # yield item  # 将数据传到pipelines.py
+
+        # 表单登录
+        #     yield scrapy.FormRequest(
+        #         "http://www.itcast.cn/channel/teacher.shtml",
+        #         formdata=data,
+        #         callback=self.after
+        #     )
+        #
+        # def after(self, response):
+        #     pass
+
+        # 自动从请求的登录页面的response寻找form表单 然后进行登录
+        yield scrapy.FormRequest.from_response(
+            response,
+            formdata={"username": "von", "password": "123456"},
+            callback=self.after
+        )
