@@ -3,7 +3,7 @@
 import pandas as pd
 
 df = pd.read_csv("./starbucks_store_worldwide.csv")
-# groupby = df.groupby(by="Country")
+groupby = df.groupby(by="Country")
 # DataFrameGroupBy 可以进行聚合 遍历
 # print(groupby) #pandas.core.groupby.generic.DataFrameGroupBy
 # for i, j in groupby:
@@ -26,5 +26,9 @@ df = pd.read_csv("./starbucks_store_worldwide.csv")
 # print(df.groupby(by=["Country", "State/Province"]).count()["Brand"])
 # print(df["Country"].groupby(by=[df["Country"], df["State/Province"]]).count())
 
+# brand_ = df.groupby(by=[df["Country"], df["State/Province"]]).count()["Brand"]
+# print(brand_.index)
+print(df.index)
 
-# 04:13
+# 将某一列作为索引,默认drop=True会删掉这一列
+# df.set_index("Country", drop=False)
