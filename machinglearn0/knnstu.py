@@ -2,12 +2,16 @@
 # __date:  2019/7/25/025
 
 import pandas as pd
+from sklearn.datasets import load_boston
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LinearRegression, SGDRegressor, Ridge
+from sklearn.metrics import mean_squared_error
+from sklearn.externals import joblib
 
 
 def knn():
@@ -112,6 +116,62 @@ def decision():
 
 
 # 03 线性回归策略
+
+def my_linear():
+    """
+    线性回归预测
+    :return:
+    """
+
+    lb = load_boston()
+    x_train, x_test, y_train, y_test = train_test_split(lb.data, lb.target, test_size=0.25)
+
+    # 标准化
+    std_x = StandardScaler()
+    x_train = std_x.fit_transform(x_train)
+    x_test = std_x.transform(x_test)
+
+    std_y = StandardScaler()
+    # 需要传二维的
+    y_train = std_y.fit_transform(y_train.reshape(-1, 1))
+    y_test = std_y.transform(y_test.reshape(-1, 1))
+
+    # 使用正规方程求解
+    lr = LinearRegression()
+    lr.fit(x_train, y_train)
+    print(lr.coef_)
+
+    # 保存训练好的模型
+    # joblib.dump(lr, "./lr.pkl")
+    # 加载保存的模型
+    # joblib.load("./lr.pkl")
+
+    # 预测测试集,得到预测的目标值
+    y_predict = std_y.inverse_transform(lr.predict(x_test))
+    print("正规方程预测价格每个房子的:", y_predict)
+    # 预测值与目标值的误差
+    print("正规方程的均方误差:", mean_squared_error(std_y.inverse_transform(y_test), y_predict))
+
+    # 使用梯度下降求解
+    sgd = SGDRegressor()
+    sgd.fit(x_train, y_train)
+    print(sgd.coef_)
+    y_predict_sgd = std_y.inverse_transform(sgd.predict(x_test))
+    print("SGD预测价格每个房子的:", y_predict_sgd)
+    # 预测值与目标值的误差
+    print("SGD的均方误差:", mean_squared_error(std_y.inverse_transform(y_test), y_predict_sgd))
+
+    # 带有正则化的线性回归 岭回归
+    ridge = Ridge(alpha=1.0)
+    ridge.fit(x_train, y_train)
+    print(ridge.coef_)
+    y_predict_ridge = std_y.inverse_transform(ridge.predict(x_test))
+    print("ridge预测价格每个房子的:", y_predict_ridge)
+    # 预测值与目标值的误差
+    print("ridge的均方误差:", mean_squared_error(std_y.inverse_transform(y_test), y_predict_ridge))
+
+
 if __name__ == '__main__':
     # knn()
-    decision()
+    # decision()
+    my_linear()
